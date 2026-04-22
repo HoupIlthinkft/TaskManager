@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { Flatpickr } from "react-flatpickr";
+import Flatpickr from "react-flatpickr";
 import "../node_modules/flatpickr/dist/flatpickr.css";
 
-import { taskComponent } from "./task.tsx";
+import { TaskComponent } from "./task.tsx";
 
-export function scheduleCustomComponent() {
+export function ScheduleCustomComponent() {
 
     const [rangeDate, setRangeDate] = useState(null);
+
+    const data = [];
 
     return (
         <div>
@@ -15,8 +17,14 @@ export function scheduleCustomComponent() {
                 <div>
                     <div>
                         <Flatpickr 
-                            options={{ mode: "range" }}
-                            value={rangeDate == null ? "Выберите даты" : rangeDate}
+                            options={{ 
+                                mode: "range",
+                                minDate: "today",
+                                maxDate: new Date().fp_incr(14),
+                                altInput: true,
+                                altFormat: 'F j, Y',
+                                dateFormat: 'Y-m-d',
+                            }}
                             onChange={(selectedDates) => {
                                 setRangeDate(selectedDates);
                             }}
@@ -31,10 +39,10 @@ export function scheduleCustomComponent() {
             <div>
                 {
                     data.map((el, index) => (
-                        <taskComponent key={index} header={el.header} content={el.content} priority={el.priority} deadline={el.deadline}/>
+                        <TaskComponent key={index} header={el.header} content={el.content} priority={el.priority} deadline={el.deadline}/>
                     ))
                 }
             </div>
-        <div>
+        </div>
     )
 }

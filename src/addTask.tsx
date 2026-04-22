@@ -1,4 +1,4 @@
-export function addTaskComponent() {
+export function AddTaskComponent() {
     return (
         <div>
             <div>
@@ -12,11 +12,11 @@ export function addTaskComponent() {
             <div>
                 <div>
                     <select>
-                        <options value="high">Высокий</options>
-                        <options value="medium">Средний</options>
-                        <options value="low">Низкий</options>
+                        <option value="high">Высокий</option>
+                        <option value="medium">Средний</option>
+                        <option value="low">Низкий</option>
                     </select>
-                    <input type="date" value="Укажите дедлайн" min={Date()}/>
+                    <input type="date" min={Date()}/>
                 </div>
                 <div>
                     <i></i>

@@ -1,6 +1,6 @@
-import { taskComponent } from "./task.tsx";
+import { TaskComponent } from "./task.tsx";
 
-export function scheduleWeeklyComponent() {
+export function ScheduleWeeklyComponent() {
     const data : taskIntf[] = [];
 
     const dayOfTheWeek : string[] = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"];
@@ -13,8 +13,8 @@ export function scheduleWeeklyComponent() {
                 <p>{dayOfTheWeek[index]}</p>
                 <div>
                     {
-                        tasks == [] : <p>Задач нету</p> ? tasks.map((el, index) => (
-                                                            <taskComponent key={index} header={el.header} content={el.content} priority={el.priority} deadline={el.deadline}/>
+                        tasks == [] ? <p>Задач нету</p> : tasks.map((el, index) => (
+                                                            <TaskComponent key={index} header={el.header} content={el.content} priority={el.priority} deadline={el.deadline}/>
                                                         ))
                     }
                 </div>
