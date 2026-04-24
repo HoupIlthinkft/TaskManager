@@ -1,5 +1,5 @@
 import stub from "./assets/stub.json";
-import type { TaskIntf, TasksCollectionIntf } from "./config.ts";
+import type { TaskIntf, TasksCollectionIntf, AddTaskIntf } from "./config.ts";
 
 
 export async function getTasksOnThisWeekly() {
@@ -33,7 +33,7 @@ export async function getTasksForCustomRange(selectedDates : [string, string]) {
     }
 }
 
-export async function addTask(task : TaskIntf) {
+export async function addTask(body : AddTaskIntf) {
     try {
         const response = await fetch(("/api/addTask"), {
             method: "POST",
@@ -41,10 +41,13 @@ export async function addTask(task : TaskIntf) {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                header: task.header,
-                content: task.content,
-                priority: task.priority,
-                deadline: task.deadline,
+                date: body.date,
+                task: {
+                    header: body.task.header,
+                    content: body.task.content,
+                    priority: body.task.priority,
+                    deadline: body.task.deadline,
+                }
             }),
         });
 

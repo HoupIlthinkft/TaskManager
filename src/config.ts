@@ -8,6 +8,11 @@ interface TaskIntf {
     deadline: string,
 }
 
+interface AddTaskIntf {
+    date: string,
+    content: TaskIntf,
+}
+
 interface TasksCollectionIntf {
     date: string,
     tasks: TaskIntf[],
@@ -22,4 +27,4 @@ export const useTasksStore = create(
     }))
 )
 
-export type { TaskIntf, TasksCollectionIntf };
+export type { TaskIntf, TasksCollectionIntf, AddTaskIntf };

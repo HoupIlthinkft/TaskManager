@@ -26,7 +26,7 @@ export function ScheduleCustomComponent(props) {
                             options={{ 
                                 mode: "range",
                                 minDate: "today",
-                                //maxDate: new Date().fp_incr(30),
+                                maxDate: new Date().fp_incr(30),
                                 altInput: true,
                                 altFormat: 'F j',
                                 dateFormat: 'Y-m-d',
@@ -47,7 +47,7 @@ export function ScheduleCustomComponent(props) {
                 {
                     tasksCustom.map((day) => (
                         day.tasks.map((el, index) => (
-                            <TaskComponent key={index} header={el.header} content={el.content} priority={el.priority} deadline={el.deadline}/>
+                            <TaskComponent key={index} header={el.header} content={el.content} priority={el.priority} deadline={`${day.date} ${el.deadline}`}/>
                         ))
                     ))
                 }

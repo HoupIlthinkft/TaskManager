@@ -10,7 +10,7 @@ export function HomeComponent(props : TasksCollectionIntf[]) {
             {
                 tasksWeekly.map((day : TasksCollectionIntf) => (
                     day.tasks.map((el : TaskIntf, index) => (
-                        <TaskComponent key={index} header={el.header} content={el.content} priority={el.priority} deadline={el.deadline}/>
+                        <TaskComponent key={index} header={el.header} content={el.content} priority={el.priority} deadline={`${day.date} ${el.deadline}`}/>
                     ))
                 ))
             }

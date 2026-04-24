@@ -24,7 +24,7 @@ export function ScheduleTodayComponent(props) {
                     {
                         tasksWeekly.map((day) => (
                             day.tasks.map((el, index) => (
-                                el.priority == "high" ? <TaskComponent key={index} header={el.header} content={el.content} priority={el.priority} deadline={el.deadline}/> : "" 
+                                el.priority == "high" ? <TaskComponent key={index} header={el.header} content={el.content} priority={el.priority} deadline={`${day.date} ${el.deadline}`}/> : "" 
                             ))
                         ))
                     }
