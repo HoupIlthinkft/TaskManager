@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Flatpickr from "react-flatpickr";
 
 import { TaskComponent } from "./task.tsx";
@@ -6,11 +6,12 @@ import { getTasksForCustomRange } from "./requests.ts";
 
 export function ScheduleCustomComponent(props) {
 
-    const [rangeDate, setRangeDate] = useState([new Date(), new Date().fp_incr(7)]);
+    const [rangeDate, setRangeDate] = useState<Date[] | null>(null);
 
     const [sortingMenuOpen, setSortingMenuOpen] = useState(false);
-    
-    const [sorting, setSorting] = useState("unSorted")
+    const rangeCalendar = useRef(null);
+
+    const [sorting, setSorting] = useState<"usSorted" | "sorted" | "revSorted">("unSorted");
     const [sortedHigh, setSortedHigh] = useState(true);
     const [sortedMedium, setSortedMedium] = useState(true);
     const [sortedLow, setSortedLow] = useState(true);
@@ -18,8 +19,12 @@ export function ScheduleCustomComponent(props) {
     const tasksCustom = props.tasksCustom
     
     useEffect(() => {
-        if (rangeDate != null) getTasksForCustomRange(rangeDate);
+        if (rangeDate != null) getTasksForCustomRange([new Date(rangeDate[0].setHours(new Date().getTimezoneOffset() / -60, 0, 0)).toJSON(), new Date(rangeDate[1].setHours(new Date().getTimezoneOffset() / -60, 0, 0)).toJSON()]);
     }, [rangeDate]);
+
+    useEffect(() => {
+        rangeCalendar.current.flatpickr.input.value = `${new Date(new Date().setHours(new Date().getTimezoneOffset() / -60, 0, 0)).toJSON()} to ${new Date(new Date().fp_incr(6).setHours(new Date().getTimezoneOffset() / -60, 0, 0)).toJSON()}`;
+    }, []);
 
     return (
         <div className="flex flex-col self-center gap-[clamp(5px,3vh,30px)] mx-[clamp(10px,2vw,40px)] my-[clamp(10px,4vh,40px)]">
@@ -30,6 +35,7 @@ export function ScheduleCustomComponent(props) {
                         <span className="material-symbols-outlined self-center h-fit scale-[2]">date_range</span>
                         <Flatpickr 
                             className="text-center outline-none cursor-pointer"
+                            ref={rangeCalendar}
                             options={{ 
                                 mode: "range",
                                 minDate: "today",
@@ -37,7 +43,6 @@ export function ScheduleCustomComponent(props) {
                                 altInput: true,
                                 altFormat: 'F j',
                                 dateFormat: 'Y-m-d',
-                                defaultDate: [new Date(), new Date().fp_incr(7)],
                             }}
                             onChange={(selectedDates) => {
                                 if (selectedDates.length == 2) setRangeDate(selectedDates);
@@ -81,7 +86,7 @@ export function ScheduleCustomComponent(props) {
                     </div>
                 </div>
             </div>
-            <div className="grid grid-cols-3 overflow-y-auto max-h-[60vh] bg-plate-accent rounded-[15px] px-[clamp(5px,2vw,40px)] py-[clamp(5px,4vh,40px)] gap-y-[clamp(5px,3vh,30px)] gap-x-[clamp(5px,2vw,30px)]">
+            <div className="grid grid-cols-3 overflow-y-auto min-h-[40vh] max-h-[50vh] w-[80vw] bg-plate-accent rounded-[15px] px-[clamp(5px,2vw,40px)] py-[clamp(5px,4vh,40px)] gap-y-[clamp(5px,3vh,30px)] gap-x-[clamp(5px,2vw,30px)]">
                 {
                     sortingTask(
                     tasksCustom.flatMap((day, indexTop) => (

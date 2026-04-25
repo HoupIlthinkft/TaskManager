@@ -3,8 +3,7 @@ import type { TaskIntf, TasksCollectionIntf, AddTaskIntf } from "./config.ts";
 
 
 export async function getTasksOnThisWeekly() {
-    const [start, end] : [string, string] = [new Date(), new Date().fp_incr(7)]
-        .map(d => d.toLocaleDateString('ru-RU')) as [string, string];
+    const [start, end] : [string, string] = [new Date(new Date().setHours(new Date().getTimezoneOffset() / -60, 0, 0)).toJSON(), new Date(new Date().fp_incr(6).setHours(new Date().getTimezoneOffset() / -60, 0, 0)).toJSON()]
 
     const response : TasksCollectionIntf[] = await getTasksForCustomRange([start, end]);
 
