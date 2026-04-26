@@ -1,6 +1,7 @@
 import stub from "./assets/stub.json";
 import type { TaskIntf, TasksCollectionIntf, AddTaskIntf } from "./config.ts";
 
+import { callNotifications } from "./notifications.tsx";
 
 export async function getTasksOnThisWeekly() {
     const [start, end] : [string, string] = [new Date(new Date().setHours(new Date().getTimezoneOffset() / -60, 0, 0)).toJSON(), new Date(new Date().fp_incr(6).setHours(new Date().getTimezoneOffset() / -60, 0, 0)).toJSON()]
@@ -22,13 +23,13 @@ export async function getTasksForCustomRange(selectedDates : [string, string]) {
         );
         
         if (!response.ok) {
-            console.log(`Ошибка сервера: ${response.status}`);
+            callNotifications("error", `Ошибка сервера: ${response.status}`);
             return -1;
-        }
+        } else callNotifications("success", "Таски загружены");
         
         return stub;
     } catch (error) {
-        console.log("Ошибка загрузки тасков: " + error);
+        callNotifications("error",`Ошибка загрузки тасков: ${error}`);
     }
 }
 
@@ -51,11 +52,11 @@ export async function addTask(body : AddTaskIntf) {
         });
 
         if (!response.ok) {
-            console.log(`Ошибка сервера: ${response.status}`);
-        }
+            callNotifications("error", `Ошибка сервера: ${response.status}`);
+        } else callNotifications("success", "Таск добавлен в расписание");
 
     } catch (error) {
-        console.log(`Ошибка добавления таска: ${error}`);
+        callNotifications("error", `Ошибка добавления таска: ${error}`);
     }
 }
 

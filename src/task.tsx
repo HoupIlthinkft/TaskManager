@@ -13,7 +13,7 @@ export function TaskComponent(props : {header : string, content : string, priori
             </div>
                 {
                     viewTask ? (
-                        <div className="absolute cursor-default w-[100vw] h-[100vh] top-[0%] left-[0%] flex items-center justify-center bg-black/66">
+                        <div className="absolute z-4 cursor-default w-[100vw] h-[100vh] top-[0%] left-[0%] flex items-center justify-center bg-black/66">
                             <div className="flex flex-col w-fit max-w-[60vw] h-fit gap-[clamp(5px,4vh,40px)] px-[clamp(10px,2vw,30px)] py-[clamp(10px,3vh,30px)] self-center justify-self-center bg-plate-task rounded-[12px]">
                                 <span onClick={() => setViewTask(!viewTask)} className="material-symbols-outlined cursor-pointer self-end scale-[2] hover:text-hover-nav hover:scale-210 transition-all duration-250 ease-in">close</span>
                                 <div className="flex flex-col gap-[clamp(5px,4vh,40px)] h-[100%] justify-between">

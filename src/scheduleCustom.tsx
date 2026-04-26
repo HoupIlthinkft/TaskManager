@@ -27,14 +27,14 @@ export function ScheduleCustomComponent(props) {
     }, []);
 
     return (
-        <div className="flex flex-col self-center gap-[clamp(5px,3vh,30px)] mx-[clamp(10px,2vw,40px)] my-[clamp(10px,4vh,40px)]">
+        <div className="flex flex-col self-center w-[90vw] gap-[clamp(5px,3vh,30px)] mx-[clamp(10px,2vw,40px)] my-[clamp(10px,4vh,40px)]">
             <div className="flex flex-row justify-between items-end">
                 <p className="font-semibold text-header text-[clamp(2rem,5vw,5rem)]">Входящие задачи</p>
                 <div className="flex flex-col gap-[clamp(5px,2vh,20px)]">
                     <div className="flex flex-row gap-[clamp(5px,1vw,20px)] font-semibold text-[clamp(1rem,2vw,2rem)] cursor-pointer w-fit bg-plate-muted px-[clamp(5px,1vw,20px)] py-[clamp(5px,1vh,10px)] rounded-[10px] hover:bg-plate-nav hover:text-hover-nav hover:scale-110 transition-all duration-300 ease-in">
-                        <span className="material-symbols-outlined self-center h-fit scale-[2]">date_range</span>
+                        <span className="material-symbols-outlined self-center h-fit scale-[1] xl:scale-[2]">date_range</span>
                         <Flatpickr 
-                            className="text-center outline-none cursor-pointer"
+                            className="text-center outline-none max-w-[20vw] cursor-pointer text-[clamp(0.75rem,2vw,2rem)]"
                             ref={rangeCalendar}
                             options={{ 
                                 mode: "range",
@@ -51,8 +51,8 @@ export function ScheduleCustomComponent(props) {
                     </div>
                     <div className="flex flex-col gap-[clamp(5px,1vh,10px)] bg-plate-muted px-[clamp(5px,1vw,20px)] py-[clamp(5px,1vh,10px)] rounded-[10px] hover:bg-plate-nav hover:text-hover-nav hover:scale-110 transition-all duration-300 ease-in">
                         <div onClick={() => setSortingMenuOpen(!sortingMenuOpen)} className="flex flex-row gap-[clamp(5px,1vw,20px)] cursor-pointer">
-                            <span className="material-symbols-outlined self-center h-fit scale-[2]">filter_alt</span>
-                            <p className="font-semibold text-center w-[100%] text-[clamp(1rem,2vw,2rem)]">Фильтрация</p>
+                            <span className="material-symbols-outlined self-center w-min h-fit scale-[1] xl:scale-[2]">filter_alt</span>
+                            <p className="font-semibold text-center w-[100%] self-center text-[clamp(0.75rem,2vw,2rem)]">Фильтрация</p>
                         </div>
                         {
                             sortingMenuOpen ? (
@@ -61,23 +61,23 @@ export function ScheduleCustomComponent(props) {
                                         sorting == "sorted" ? setSorting("revSorted") : (
                                                                                     sorting == "revSorted" ? setSorting("unSorted") : setSorting("sorted"))
                                     }} className="flex flex-row gap-[clamp(5px,0.5vw,10px)] cursor-pointer">
-                                        <span className={`material-symbols-outlined ${sorting == "revSorted" ? "scale-[-2]" : "scale-[2]"} self-center`}>{
+                                        <span className={`material-symbols-outlined ${sorting == "revSorted" ? "xl:scale-[-2] md:scale-[-1]" : "xl:scale-[2] md:scale-[1]"} self-center`}>{
                                             sorting == "sorted" || sorting == "revSorted" ? "sort" : "menu"
                                         }</span>
-                                        <p className="font-semibold text-[clamp(1rem,2vw,2rem)]">Приоритет</p>
+                                        <p className="font-semibold text-[clamp(0.75rem,2vw,2rem)]">Приоритет</p>
                                     </div>
                                     <div className="flex flex-col gap-[5px,1vh,10px]">
                                         <div onClick={() => setSortedHigh(!sortedHigh)} className="flex flex-row gap-[clamp(10px,2vw,30px)] justify-between cursor-pointer">
                                             <p className="font-medium text-[clamp(0.75rem,1.5vw,2rem)]">Высокий</p>
-                                            <span className="material-symbols-outlined scale-[2] self-center">{sortedHigh ? "select_check_box" : "check_box_outline_blank"}</span>
+                                            <span className="material-symbols-outlined md:scale-[1] xl:scale-[2] self-center">{sortedHigh ? "select_check_box" : "check_box_outline_blank"}</span>
                                         </div>
                                         <div onClick={() => setSortedMedium(!sortedMedium)} className="flex flex-row gap-[clamp(10px,2vw,30px)] justify-between cursor-pointer">
                                             <p className="font-medium text-[clamp(0.75rem,1.5vw,2rem)]">Средний</p>
-                                            <span className="material-symbols-outlined scale-[2] self-center">{sortedMedium ? "select_check_box" : "check_box_outline_blank"}</span>
+                                            <span className="material-symbols-outlined md:scale-[1] xl:scale-[2] self-center">{sortedMedium ? "select_check_box" : "check_box_outline_blank"}</span>
                                         </div>
                                         <div onClick={() => setSortedLow(!sortedLow)} className="flex flex-row gap-[clamp(10px,2vw,30px)] justify-between cursor-pointer">
                                             <p className="font-medium text-[clamp(0.75rem,1.5vw,2rem)]">Низкий</p>
-                                            <span className="material-symbols-outlined scale-[2] self-center">{sortedLow ? "select_check_box" : "check_box_outline_blank"}</span>
+                                            <span className="material-symbols-outlined md:scale-[1] xl:scale-[2] self-center">{sortedLow ? "select_check_box" : "check_box_outline_blank"}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -86,7 +86,7 @@ export function ScheduleCustomComponent(props) {
                     </div>
                 </div>
             </div>
-            <div className="grid grid-cols-3 overflow-y-auto min-h-[40vh] max-h-[50vh] w-[80vw] bg-plate-accent rounded-[15px] px-[clamp(5px,2vw,40px)] py-[clamp(5px,4vh,40px)] gap-y-[clamp(5px,3vh,30px)] gap-x-[clamp(5px,2vw,30px)]">
+            <div className="grid grid-cols-2 md:grid-cols-3 overflow-y-auto min-h-[30vh] md:min-h-[40vh] max-h-[50vh] bg-plate-accent rounded-[15px] px-[clamp(5px,2vw,40px)] py-[clamp(5px,4vh,40px)] gap-y-[clamp(5px,3vh,30px)] gap-x-[clamp(5px,2vw,30px)]">
                 {
                     sortingTask(
                     tasksCustom.flatMap((day, indexTop) => (

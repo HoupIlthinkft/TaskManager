@@ -8,6 +8,7 @@ import { ScheduleCustomComponent } from "./scheduleCustom.tsx";
 import { ScheduleWeeklyComponent } from "./scheduleWeekly.tsx";
 
 import { NavComponent } from "./navigation.tsx";
+import { NotificationComponent } from "./notifications.tsx";
 
 import { getTasksOnThisWeekly } from "./requests.ts";
 import { useTasksStore } from "./config.ts";
@@ -59,6 +60,7 @@ export default function App() {
         <>
             <NavComponent pages={pages} activePage={activePage} setActivePage={setActivePage} />
             {components[activePage]}
+            <NotificationComponent />
         </>
     )
 }

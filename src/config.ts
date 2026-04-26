@@ -27,4 +27,16 @@ export const useTasksStore = create(
     }))
 )
 
+export const useNotificationStore = create(
+    immer((set) => ({
+        notificationActivity: false,
+        setNotificationActivity: (activity) => set((state) => {state.notificationActivity = activity}),
+        notificationContent: {
+            typeNotification: "",
+            content: "",
+        },
+        setNotificationContent: (content) => set((state) => {state.notificationContent = {typeNotification: content[0], content: content[1]}}),
+    }))
+)
+
 export type { TaskIntf, TasksCollectionIntf, AddTaskIntf };

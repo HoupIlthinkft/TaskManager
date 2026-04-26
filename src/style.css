@@ -23,6 +23,14 @@
     --color-priority-high: #FF6363;
     --color-priority-medium: #A29A3E;
     --color-priority-low: #44AB66;
+
+    --color-notification-error: #FF6363;
+    --color-notification-success: #44AB66;
+}
+
+:root {
+    --color-notification-error: #A8000F;
+    --color-notification-success: #01A800;
 }
 
 @font-face {
