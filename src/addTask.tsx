@@ -62,7 +62,7 @@ export function AddTaskComponent() {
                                 dateFormat: 'Y-m-d',
                                 defaultDate: new Date(),
                             }}
-                            onValueUpdate={(selectedDates) => {setDate(selectedDates[0])}}
+                            onValueUpdate={(selectedDates) => {setDate(new Date(selectedDates[0].setHours(new Date().getTimezoneOffset() / -60, 0, 0, 0)).toJSON())}}
                             className="text-center outline-none text-[clamp(0.5rem,1.5vw,1.5rem)]"/>
                         </div>
                         <div className="flex flex-row gap-[clamp(5px,2vw,40px)] justify-between"> 
