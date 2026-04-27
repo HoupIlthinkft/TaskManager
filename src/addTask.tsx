@@ -39,7 +39,7 @@ export function AddTaskComponent() {
             </div>
             <div className="flex flex-col gap-[clamp(5px,1vh,10px)]">
                 <p className="font-semibold text-header text-[clamp(1rem,2.5vw,2.5rem)]">Содержание</p>
-                <textarea ref={content} placeholder="Введите содеражние..." className="bg-plate-task text-task-content rounded-[15px] outline-none w-[75vw] min-h-[40vh] px-[clamp(5px,1vw,20px)] py-[clamp(5px,2vh,20px)] "/>
+                <textarea ref={content} placeholder="Введите содержание..." className="bg-plate-task text-task-content rounded-[15px] outline-none w-[75vw] min-h-[40vh] px-[clamp(5px,1vw,20px)] py-[clamp(5px,2vh,20px)] "/>
             </div>
             <div className="flex flex-col w-[75vw] gap-[clamp(5px,4vh,40px)] items-end">
                 <div className="flex flex-row w-[100%] justify-between">
@@ -99,7 +99,7 @@ export function AddTaskComponent() {
                         </div>
                     </div>
                 </div>
-                <div onClick={checkingAddTask} className="flex flex-row gap-[clamp(5px,1vw,20px)] px-[clamp(5px,2vw,30px)] py-[clamp(5px,2vh,20px)] rounded-[15px] outline-none bg-plate-accent hover:bg-plate-nav hover:text-hover-nav hover:scale-115 transition-all ease-in duration-300">
+                <div onClick={checkingAddTask} role="button" className="flex flex-row gap-[clamp(5px,1vw,20px)] px-[clamp(5px,2vw,30px)] py-[clamp(5px,2vh,20px)] rounded-[15px] outline-none bg-plate-accent hover:bg-plate-nav hover:text-hover-nav hover:scale-115 transition-all ease-in duration-300">
                     <span className="material-symbols-outlined h-fit md:scale-[2] xl:scale-[3] self-center">add</span>
                     <p className="font-semibold text-[clamp(1rem,3vw,3rem)]">Добавить</p>
                 </div>

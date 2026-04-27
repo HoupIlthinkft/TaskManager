@@ -35,7 +35,7 @@ export async function getTasksForCustomRange(selectedDates : [string, string]) {
 
 export async function addTask(body : AddTaskIntf) {
     try {
-        const response = await fetch(("/api/addTask"), {
+        const response = await fetch(("http://localhost/api/addTask"), {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -51,7 +51,7 @@ export async function addTask(body : AddTaskIntf) {
             }),
         });
 
-        if (!response.ok) {
+        if (!response.ok && response.status != 404) {
             callNotifications("error", `Ошибка сервера: ${response.status}`);
         } else callNotifications("success", "Таск добавлен в расписание");
 
