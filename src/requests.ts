@@ -22,8 +22,13 @@ export async function getTasksForCustomRange(selectedDates : [string, string]) {
             }
         );
         
+        
+        // Удалить когда появится бэкенд
 
-        if (response.status == 404) return stub;
+        if (response.status == 404) {
+            callNotifications("success", "Таски загружены");
+            return stub;
+        }
 
 
 
@@ -40,7 +45,7 @@ export async function getTasksForCustomRange(selectedDates : [string, string]) {
 
 export async function addTask(body : AddTaskIntf) {
     try {
-        const response = await fetch(("http://localhost/api/addTask"), {
+        const response = await fetch(("/api/addTask"), {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
